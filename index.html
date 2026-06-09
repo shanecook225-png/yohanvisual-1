@@ -1,262 +1,451 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yohan Media — Agence TikTok</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        :root{
-          --bg:#050507;
-          --card:#0d0d12;
-          --muted:#a3a3b2;
-          --accent:#ff0050;
-          --accent-2:#00f2ea;
-          --radius:14px;
-        }
-        *{box-sizing:border-box;margin:0;padding:0}
-        body{
-          font-family:Poppins,sans-serif;
-          background:var(--bg);
-          color:#e9e9ef;
-          scroll-behavior:smooth
-        }
-        .container{width:90%;max-width:1200px;margin:auto}
-        header{
-          position:sticky;top:0;z-index:100;
-          background:rgba(0,0,0,.7);
-          backdrop-filter:blur(6px)
-        }
-        .header-inner{
-          display:flex;
-          justify-content:space-between;
-          align-items:center;
-          padding:15px 0
-        }
-        .logo{
-          color:var(--accent);
-          font-weight:800;
-          font-size:22px;
-          text-decoration:none
-        }
-        .nav a{
-          color:var(--muted);
-          margin-left:20px;
-          text-decoration:none;
-          padding:6px 12px;
-          border-radius:8px;
-          transition:.3s
-        }
-        .nav a:hover{
-          color:#fff;
-          background:rgba(255,255,255,.05)
-        }
-        section{padding:80px 0}
-        h1,h2{margin-bottom:20px}
-        .btn{
-          display:inline-block;
-          padding:12px 22px;
-          border-radius:12px;
-          font-weight:600;
-          text-decoration:none;
-          background:linear-gradient(90deg,var(--accent),var(--accent-2));
-          color:#050507
-        }
-        .hero{
-          display:grid;
-          grid-template-columns:1fr 420px;
-          gap:40px;
-          align-items:center
-        }
-        .hero img{
-          width:100%;
-          border-radius:16px;
-          box-shadow:0 30px 80px rgba(0,0,0,.6)
-        }
-        .grid-3{
-          display:grid;
-          grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-          gap:20px
-        }
-        .card,.media-card{
-          background:var(--card);
-          border-radius:var(--radius);
-          border:1px solid rgba(255,255,255,.05);
-          overflow:hidden
-        }
-        .media-content{padding:18px}
-        footer{
-          text-align:center;
-          padding:20px 0;
-          border-top:1px solid rgba(255,255,255,.05);
-          color:var(--muted)
-        }
-        @media(max-width:900px){
-          .hero{grid-template-columns:1fr}
-        }
-    </style>
+<title>Yohan Visual — Creative Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#050507;
+  --text:#e9e9ef;
+  --muted:#a3a3b2;
+  --gold:#d4af37;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Poppins,sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ================= LOADER ================= */
+#loader{
+  position:fixed;
+  inset:0;
+  background:#050507;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.loader-content{
+  text-align:center;
+  color:var(--gold);
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%{opacity:0.4; transform:scale(0.98);}
+  50%{opacity:1; transform:scale(1);}
+  100%{opacity:0.4; transform:scale(0.98);}
+}
+
+/* ================= HEADER ================= */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:999;
+  background:rgba(5,5,7,0.6);
+  backdrop-filter:blur(12px);
+}
+
+.container{
+  width:90%;
+  max-width:1200px;
+  margin:auto;
+}
+
+.header-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 0;
+}
+
+.logo{
+  color:var(--gold);
+  font-weight:800;
+  text-decoration:none;
+}
+
+/* MENU */
+nav{
+  display:flex;
+  gap:15px;
+}
+
+nav a{
+  color:var(--muted);
+  text-decoration:none;
+}
+
+nav a:hover{
+  color:white;
+}
+
+/* BURGER */
+.burger{
+  display:none;
+  flex-direction:column;
+  cursor:pointer;
+}
+
+.burger span{
+  height:2px;
+  width:25px;
+  background:white;
+  margin:4px;
+}
+
+/* ================= HERO ================= */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:0 20px;
+
+  background:url("assets/hero.jpg") center/cover fixed;
+  position:relative;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.65);
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+}
+
+.hero h1{
+  font-size:50px;
+}
+
+.hero p{
+  color:var(--muted);
+  margin:15px 0;
+}
+
+/* BUTTON */
+.btn{
+  padding:12px 22px;
+  background:var(--gold);
+  color:#000;
+  border-radius:30px;
+  text-decoration:none;
+  display:inline-block;
+  transition:0.3s;
+}
+
+.btn:active{
+  transform:scale(0.9);
+}
+
+/* ================= SECTIONS ================= */
+section{
+  padding:100px 0;
+}
+
+h2{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:#0d0d12;
+  padding:20px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,0.05);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(212,175,55,0.4);
+}
+
+/* FILTER */
+.filters{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.filters button{
+  background:#111;
+  border:1px solid rgba(255,255,255,0.1);
+  color:#aaa;
+  padding:8px 14px;
+  border-radius:20px;
+  margin:5px;
+  cursor:pointer;
+}
+
+/* PORTFOLIO */
+.portfolio img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:12px;
+  transition:0.4s;
+}
+
+.card:hover img{
+  transform:scale(1.05);
+  filter:brightness(0.8);
+}
+
+/* FADE */
+.fade{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  padding:14px;
+  border-radius:50px;
+  text-decoration:none;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  nav{
+    position:absolute;
+    top:60px;
+    right:0;
+    background:#0d0d12;
+    flex-direction:column;
+    display:none;
+    width:200px;
+    padding:10px;
+  }
+
+  nav.active{
+    display:flex;
+  }
+
+  .burger{
+    display:flex;
+  }
+
+  .hero h1{
+    font-size:32px;
+  }
+}
+</style>
 </head>
 
 <body>
 
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-content">
+    <h2>Yohan Visual</h2>
+    <p>Loading studio...</p>
+  </div>
+</div>
+
+<!-- HEADER -->
 <header>
-    <div class="container header-inner">
-        <a href="#hero" class="logo">Yohan Media</a>
-        <nav class="nav">
-            <a href="#hero">Accueil</a>
-            <a href="#services">Services</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#accounts">Comptes gérés</a>
-            <a href="#contact">Contact</a>
-        </nav>
+  <div class="container header-inner">
+    <a href="#" class="logo">Yohan Visual</a>
+
+    <nav id="nav">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="burger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
+  </div>
 </header>
 
-<section id="hero">
-    <div class="container hero">
-        <div>
-            <h1>Gestion & montage de contenu TikTok</h1>
-            <p style="color:var(--muted);margin-bottom:20px">
-                J’aide les marques à créer du contenu TikTok efficace grâce au montage,
-                au cadrage et à une mise en valeur optimisée.
-            </p>
-            <a href="#contact" class="btn">Contact & Booking</a>
-        </div>
-        <img src="assets/img-hero.jpg" alt="Yohan Media">
-    </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content fade">
+    <h1>Cinematic Visual Stories</h1>
+    <p>Photography • Video • Branding • Content Studio</p>
+    <a href="#contact" class="btn">Start a project</a>
+  </div>
 </section>
 
-<section id="services">
-    <div class="container">
-        <h2>Services</h2>
-        <div class="grid-3">
-            <div class="card"><div class="media-content">
-                <h3>Montage vidéo</h3>
-                <p>Montage dynamique adapté à TikTok.</p>
-            </div></div>
-            <div class="card"><div class="media-content">
-                <h3>Cadrage & prise de vue</h3>
-                <p>Mise en valeur produit et plans efficaces.</p>
-            </div></div>
-            <div class="card"><div class="media-content">
-                <h3>Optimisation contenu</h3>
-                <p>Format, rythme et cohérence visuelle.</p>
-            </div></div>
-        </div>
-    </div>
+<!-- ABOUT -->
+<section id="about" class="container fade">
+  <h2>About Yohan Visual</h2>
+  <p style="color:var(--muted);text-align:center;max-width:800px;margin:auto;line-height:1.8">
+    Yohan Visual is a creative studio based in Abidjan specialized in high-end visual storytelling.
+    We help brands, restaurants and individuals transform ideas into powerful visual content.
+  </p>
 </section>
 
-<section id="portfolio">
-    <div class="container">
-        <h2>Vidéos TikTok réalisées</h2>
-        <div class="grid-3">
-
-            <div class="media-card">
-                <blockquote class="tiktok-embed"
-                            cite="https://www.tiktok.com/@yohan_media_1/video/7517257737802239238"
-                            data-video-id="7517257737802239238">
-                    <section></section>
-                </blockquote>
-                <div class="media-content">
-                    <h3>Contenu restauration</h3>
-                    <p style="color:var(--muted)">Montage & cadrage</p>
-                </div>
-            </div>
-
-            <div class="media-card">
-                <blockquote class="tiktok-embed"
-                            cite="https://www.tiktok.com/@yohan_media_1/video/7552309905571597580"
-                            data-video-id="7552309905571597580">
-                    <section></section>
-                </blockquote>
-                <div class="media-content">
-                    <h3>Vidéo produit</h3>
-                    <p style="color:var(--muted)">Mise en valeur</p>
-                </div>
-            </div>
-
-            <div class="media-card">
-                <blockquote class="tiktok-embed"
-                            cite="https://www.tiktok.com/@yohan_media_1/video/7515919449841552646"
-                            data-video-id="7515919449841552646">
-                    <section></section>
-                </blockquote>
-                <div class="media-content">
-                    <h3>Format viral</h3>
-                    <p style="color:var(--muted)">Montage dynamique</p>
-                </div>
-            </div>
-
-        </div>
-        <script async src="https://www.tiktok.com/embed.js"></script>
-    </div>
+<!-- RESULTS -->
+<section class="container fade">
+  <h2>Results</h2>
+  <div class="grid">
+    <div class="card"><h3>50+</h3><p>Projects</p></div>
+    <div class="card"><h3>10+</h3><p>Brands</p></div>
+    <div class="card"><h3>1M+</h3><p>Views</p></div>
+  </div>
 </section>
 
-<section id="accounts">
-    <div class="container">
-        <h2>Comptes TikTok gérés</h2>
-        <p style="color:var(--muted);margin-bottom:30px">
-            Comptes de restauration accompagnés en production de contenu TikTok
-        </p>
+<!-- SERVICES -->
+<section id="services" class="container fade">
+  <h2>Services</h2>
 
-        <div class="grid-3">
-
-            <div class="media-card">
-                <div class="media-content">
-                    <h3>@chickennationabj</h3>
-                    <p style="color:var(--muted)">
-                        Montage vidéo • Cadrage • Optimisation des contenus
-                    </p>
-                    <p style="font-size:13px;color:var(--muted)">
-                        Période : Août 2025 – Janvier 2026
-                    </p>
-                    <a href="https://www.tiktok.com/@chickennationabj?lang=fr"
-                       target="_blank"
-                       class="btn">
-                        Voir le compte TikTok
-                    </a>
-                </div>
-            </div>
-
-            <div class="media-card">
-                <div class="media-content">
-                    <h3>@la.maison.du.poulet</h3>
-                    <p style="color:var(--muted)">
-                        Montage vidéo • Cadrage • Mise en valeur produit
-                    </p>
-                    <p style="font-size:13px;color:var(--muted)">
-                        Période : Août 2025 – Janvier 2026
-                    </p>
-                    <a href="https://www.tiktok.com/@la.maison.du.poulet?lang=fr"
-                       target="_blank"
-                       class="btn">
-                        Voir le compte TikTok
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </div>
+  <div class="grid">
+    <div class="card">Photography</div>
+    <div class="card">Videography</div>
+    <div class="card">Content Creation</div>
+    <div class="card">Branding</div>
+  </div>
 </section>
 
-<section id="contact">
-    <div class="container">
-        <h2>Contact & Booking</h2>
-        <form action="https://formspree.io/f/mrbrglgp" method="POST">
-            <input type="text" name="name" placeholder="Nom" required><br><br>
-            <input type="email" name="email" placeholder="Email" required><br><br>
-            <textarea name="message" rows="5" placeholder="Message" required></textarea><br><br>
-            <button type="submit" class="btn">Envoyer</button>
-        </form>
-    </div>
+<!-- WHY -->
+<section class="container fade">
+  <h2>Why Us</h2>
+
+  <div class="grid">
+    <div class="card">Creative Vision</div>
+    <div class="card">Fast Execution</div>
+    <div class="card">Social Media Focus</div>
+  </div>
 </section>
 
-<footer>
-    © <span id="year"></span> Yohan Media
-</footer>
+<!-- PROCESS -->
+<section class="container fade">
+  <h2>Process</h2>
 
+  <div class="grid">
+    <div class="card">1. Idea</div>
+    <div class="card">2. Shoot</div>
+    <div class="card">3. Edit</div>
+    <div class="card">4. Deliver</div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="container fade">
+<h2>Work</h2>
+
+<div class="filters">
+  <button onclick="filter('all')">All</button>
+  <button onclick="filter('photo')">Photo</button>
+  <button onclick="filter('video')">Video</button>
+</div>
+
+<div class="grid">
+
+  <div class="card item photo portfolio">
+    <img src="assets/p1.jpg">
+  </div>
+
+  <div class="card item video portfolio">
+    <img src="assets/p2.jpg">
+  </div>
+
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="container fade">
+  <h2>Testimonials</h2>
+
+  <div class="grid">
+    <div class="card">“Excellent work”</div>
+    <div class="card">“Very professional”</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="container fade">
+  <h2>Contact</h2>
+
+  <form action="https://formspree.io/f/mrbrglgp" method="POST">
+    <input type="text" placeholder="Name">
+    <input type="email" placeholder="Email">
+    <textarea rows="5"></textarea>
+    <button class="btn">Send</button>
+  </form>
+</section>
+
+<a class="whatsapp" href="https://wa.me/2250100701007">WhatsApp</a>
+
+<!-- JS -->
 <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+
+/* LOADER */
+window.onload = ()=>{
+  setTimeout(()=>document.getElementById("loader").style.display="none",1200);
+};
+
+/* MENU */
+function toggleMenu(){
+  document.getElementById("nav").classList.toggle("active");
+}
+
+/* FILTER */
+function filter(type){
+  document.querySelectorAll(".item").forEach(el=>{
+    el.style.display = (type==="all" || el.classList.contains(type)) ? "block":"none";
+  });
+}
+
+/* SCROLL ANIMATION */
+const f = document.querySelectorAll(".fade");
+
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add("show");
+    }
+  });
+});
+
+f.forEach(el=>obs.observe(el));
+
 </script>
 
 </body>
